@@ -1,0 +1,3 @@
+/home/yaniv/Projects/checkpoint-project-YanivSonino/cmake-build-debug/CMakeFiles/checkpoint_project_YanivSonino.dir
+/home/yaniv/Projects/checkpoint-project-YanivSonino/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/yaniv/Projects/checkpoint-project-YanivSonino/cmake-build-debug/CMakeFiles/rebuild_cache.dir
