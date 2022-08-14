@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <unistd.h>
 
 struct contact{
@@ -98,8 +99,7 @@ void insert(void)
 	clrscr();
     printf("\nPhone Book12<::>Insert Contacts");
     printf("\n--------------------------------------------------------------------------------");
-	string = (char *)malloc(31);
-	
+
 	while(ans=='y'){
 		if(last == TOTAL_CONTACTS)
  			last = 0;
@@ -127,8 +127,10 @@ void insert(void)
 		    ans = getc(stdin);
 			getc(stdin);
 		    last++;
+
 			}
 	}
+    free(string);
 	printf("\n\nYou have inserted ( %d ) contact!\nPress a key to return main page & continue program|-->",last);
 	getc(stdin);
 }
@@ -152,6 +154,7 @@ void delet(void)
 	printf("\n  ::Enter last name: ");
 	len_size = getline(&input,&len,stdin);
 	strcpy(dlname_string,input);
+    free(input);
 	
 	for (i = 0; i < last; i++) {
 	 if (strcmp (dfname_string, A[i].fname) == 0 && strcmp (dlname_string, A[i].lname) == 0 ) {
@@ -223,16 +226,21 @@ void edit()
 			printf(" >|Enter new cellphone number: ");
 			scanf("%s",input);
 			strcpy(A[i].cellp,input);
-			
 		   	find=1;
+
 		    break;
 		}
 	 }
 	}
+
+    free(dfname);
+    free(dlname);
+
 	if (find==0)
 		printf("\t\t\n<<This contact does not exist or you chose not to Edit it.>>");
 	else
 		printf("\t\t\n<<Target contact was successfully updated!>>");
+
 	printf("\n\n\n   ::Press a key to return main page & continue program|-->");
 	getc(stdin);
 }
@@ -285,6 +293,7 @@ void searchf(void)
 			find=1;
 			break;
 		}
+    free(fname);
 	if(find==0)
 		printf("\t\n<<Not Find!There is no contact with this name in phone book.>>");	
 	else {
@@ -294,6 +303,7 @@ void searchf(void)
 	}
 	printf("\nPress a key to search another contact.");
 	getc(stdin);
+
 	search();
 }
 
@@ -310,6 +320,7 @@ void searchl(void)
 			find=1;
 			break;
 	 	}
+    free(lname);
 	if(find==0)
 		printf("\t\n<<Not Find!There is not contact with tish name in phone book.>>");	
 	else {
@@ -338,6 +349,7 @@ void searchp(void)
 			find=1;
 			break;
 		}
+    free(phone);
 	if(find==0)
 		printf("\t\n<<Not Found!There is not contact with tish phone number  in phone book.>>");	
 	else{
@@ -347,6 +359,7 @@ void searchp(void)
 	}
 	printf("\nPress a key to search another contact.");
 	getc(stdin);
+
 	search();
 }
 
@@ -367,6 +380,7 @@ void searchc(void)
 			find=1;
 			break;
 		}
+    free(phone);
 	if(find==0)
 		printf("\t\n<<Not Find!There is not contact with tish cellphone number in phone book.>>");	
 	else {
